@@ -1,6 +1,6 @@
 #include <iostream>
 
-std::string vigenereCipherEncode(std::string text, std::string key){
+std::string vigenereCipherEncode(const std::string& text, const std::string& key){
 	int keyLength = key.size();
 	std::string encodedText(text.size(), ' ');
 	for(int index = 0; index < text.size(); ++index){
@@ -12,7 +12,8 @@ std::string vigenereCipherEncode(std::string text, std::string key){
 		// std::cout << index << ' ' << encodedText[index] << '\n';
 	}
 	return encodedText;
-} 
+}
+
 
 int main(){
 	std::string str;
