@@ -26,6 +26,19 @@ int64_t inversed_mod(int64_t a, int64_t mod){
 	return x;
 }
 
+uint64_t binpow(uint64_t a, uint64_t exp, uint64_t mod){
+	uint64_t res = 1;
+	while(exp){
+		if(exp & 1){
+			res *= a;
+			res %= mod;
+		}
+		a *= (a % mod);
+		a %= mod;
+		exp >>= 1;
+	}
+	return res % mod;
+}
 
 int main(){
 
