@@ -40,6 +40,14 @@ uint64_t binpow(uint64_t a, uint64_t exp, uint64_t mod){
 	return res % mod;
 }
 
+std::pair<key, key> generate_keys(uint64_t p, uint64_t q){
+	uint64_t temp = (p-1) * (q-1);
+	uint64_t n = p * q;
+	uint64_t mersen = 65537;
+	uint64_t d = inversed_mod(mersen, temp);
+	return {{mersen, n}, {d, n}};
+}
+
 int main(){
 
 
