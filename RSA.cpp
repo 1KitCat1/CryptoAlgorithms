@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 
 struct key{
 	uint64_t e;
@@ -46,6 +47,21 @@ std::pair<key, key> generate_keys(uint64_t p, uint64_t q){
 	uint64_t mersen = 65537;
 	uint64_t d = inversed_mod(mersen, temp);
 	return {{mersen, n}, {d, n}};
+}
+
+uint8_t get_chunk_size(key k){
+	return 32 - __builtin_clz(k.m); // Count Leading Zeros
+}
+
+std::vector<uint64_t> resize(const std::vector<uint64_t>& data, uint8_t in_size, uint8_t out_size){
+	std::vector<uint64_t> res;
+	uint8_t done = 0;
+	uint8_t current = 0;
+	for(uint64_t byte : data){
+		for(uint8_t i = 0; i < in_size; ++i){
+			
+		}
+	}
 }
 
 int main(){
