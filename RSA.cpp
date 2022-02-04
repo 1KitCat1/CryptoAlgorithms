@@ -76,6 +76,22 @@ std::vector<uint64_t> resize(const std::vector<uint64_t>& data, uint8_t in_size,
 	return res;
 }
 
+std::vector<uint8_t> process_RSA(const std::vector<uint8_t>& data, key k, bool encrypt){
+	std::vector<uint64_t> data_64t(data.size());
+	for(int i = 0; i < data.size(); ++i){
+		data_64t[i] = (uint64_t) data[i];
+	}
+	std::vector<uint64_t> resized_data = resize(data_64t, 8, get_chunk_size(k) - encrypt);
+	std::vector<uint64_t> encrypted(resized_data.size());
+	for(int i = 0; i < resized_data.size(); ++i){
+		encrypted[i] = binpow(resized_data[i], k.e, k.m);
+	}
+	std::vector<uint64_t> result_64t = resize(encrypted, get_chunk_size(k) - !encrypt, 8);
+	std::vector<uint8_t> result_8t(result_64t.size());
+    for (int i = 0; i < result_64t.size(); i++)
+        result_8t[i] = (uint8_t) result_64t[i];
+    return result_8t;
+}
 
 
 int main(){
