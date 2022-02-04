@@ -6,6 +6,9 @@ struct key{
 	uint64_t m;
 };
 
+const uint64_t def_prime1 = 3779;
+const uint64_t def_prime2 = 2833;
+
 // a*x + b*y = gcd(a, b)
 int64_t gcdex(int64_t a, int64_t b, int64_t &x, int64_t &y){
 	if(a == 0){  //0*x+b*y=gcd(a,b)
@@ -95,6 +98,9 @@ std::vector<uint8_t> process_RSA(const std::vector<uint8_t>& data, key k, bool e
 
 
 int main(){
-
+	auto key_pair = generate_keys(def_prime1, def_prime2);
+	std::cout << std::hex;
+    std::cout << "open key: " << key_pair.first.e << key_pair.first.m << std::endl;
+	std::cout << "secret key:" << key_pair.second.e << key_pair.second.m << std::endl;
 
 }
