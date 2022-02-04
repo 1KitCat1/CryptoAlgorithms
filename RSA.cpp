@@ -18,6 +18,14 @@ int64_t gcdex(int64_t a, int64_t b, int64_t &x, int64_t &y){
 	y = xn;
 	return res;	
 }
+// a * a**(-1) = 1
+int64_t inversed_mod(int64_t a, int64_t mod){
+	int64_t x, y;
+	gcdex(a, mod, x, y);
+	x = (x % mod + mod) % mod;
+	return x;
+}
+
 
 int main(){
 
